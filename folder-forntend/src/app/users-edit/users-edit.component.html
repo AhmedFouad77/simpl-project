@@ -1,0 +1,51 @@
+<h1 class=''>Edit User</h1>
+<div class="card">
+    <div class='card-body'>
+        <form [formGroup]="UsersForm">
+            <div class='form-group'>
+                <label class='alert alert-primary col-md-4'> Name :</label>
+                <input #name formControlName="name" type='text' class='form-control' [(ngModel)]="user.name"/>
+                <div *ngIf=" UsersForm.controls['name'].invalid &&
+                 (UsersForm.controls['name'].dirty || UsersForm.controls['name'].touched) " class="alert alert-danger">
+                    <div *ngIf=" UsersForm.controls['name'].errors.required">
+                        Name Is required
+                    </div>
+                </div>
+                <label class='alert alert-primary col-md-4'>User Name :</label>
+                <input #username formControlName="username" type='text' class='form-control'[(ngModel)]="user.username"/>
+                <div *ngIf=" UsersForm.controls['username'].invalid &&
+                 (UsersForm.controls['username'].dirty || UsersForm.controls['username'].touched) " class="alert alert-danger">
+                    <div *ngIf=" UsersForm.controls['username'].errors.required">
+                        User Name Is required
+                    </div>
+                </div>
+                <label class='alert alert-info col-md-4'>Email :</label>
+                <input type='email' #email formControlName="email" class='form-control' [(ngModel)]="user.email" />
+                <div *ngIf=" UsersForm.controls['email'].invalid &&
+                (UsersForm.controls['email'].dirty || UsersForm.controls['email'].touched) " class="alert alert-danger">
+                    <div *ngIf=" UsersForm.controls['email'].errors.required">
+                        Email Is required
+                    </div>
+                    <div *ngIf=" UsersForm.controls['email'].errors.email">
+                        Please Enter invalid Email :) !
+                    </div>
+                </div>
+                <label class='alert alert-warning col-md-4'>Password :</label>
+                <input type='text' #password formControlName="password" class='form-control'[(ngModel)]="user.password" />
+                <div *ngIf=" UsersForm.controls['password'].invalid &&
+                (UsersForm.controls['password'].dirty || UsersForm.controls['password'].touched) " class="alert alert-danger">
+                    <div *ngIf=" UsersForm.controls['password'].errors.required">
+                        password Is required :) !
+                    </div>
+                    <div *ngIf=" UsersForm.controls['password'].errors.minlength">
+                        Password must be at least 5 character :) !
+                    </div>
+                    <div *ngIf=" UsersForm.controls['password'].errors.pattern">
+                        Password must container at least once uppercase , once lowercase and number :) !
+                    </div>
+                </div>
+                <input type='submit' class='btn btn-dark' [disabled]='UsersForm.pristine|| UsersForm.invalid' (click)="UpdateUser(name.value, email.value, username.value, password.value)" value="Save Changes :)" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col" colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let user of users'>
+            
+            <td>{{user.name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td><a class="btn btn-primary" [routerLink]='["edit",user._id]'>Edit</a></td>
+            <td><a class="btn btn-danger"  (click)='deleteUser(user._id)'>Delete</a></td>
+        </tr>
+    </tbody>
+</table>
